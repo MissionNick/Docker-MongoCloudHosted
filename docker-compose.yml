@@ -1,8 +1,12 @@
 version: "3.8"
 
 volumes:
-   mongodb-data:
-    name: mongodb-data
+  mongodb-data:
+   name: mongodb-data
+  mongod-config:
+   name: mongod-config
+  mongodb-logs:
+   name: mongodb-logs
 networks:
    mongodb_network:
     name: mongodb_network
@@ -16,6 +20,8 @@ services:
     - MONGO_INITDB_ROOT_PASSWORD=pass12345
     volumes:
       - mongodb-data:/data/db
+      - mongod-config:/conf
+      - mongodb-logs:/logs
     networks:
     - mongodb_network
     ports:
@@ -26,6 +32,7 @@ services:
       timeout: 10s
       retries: 3
     restart: unless-stopped
+    
   mongo-express:
     image: mongo-express
     container_name: mongo-express
