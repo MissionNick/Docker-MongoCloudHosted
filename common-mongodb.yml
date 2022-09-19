@@ -1,0 +1,12 @@
+services:
+  db:
+    volumes:
+      mongodb-data:
+      name: mongodb-data
+      mongod-config:
+      name: mongod-config
+      mongodb-logs:
+      name: mongodb-logs
+    networks:
+      mongodb_network:
+        name: mongodb_network
